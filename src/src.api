@@ -1,0 +1,25 @@
+syntax = "v1"
+
+info (
+	title: "Gozero API Template"
+	desc: "This is a demo API"
+	author: "You"
+	email: "you@example.com"
+)
+
+type Request {
+	Name string `path:"name,options=you|me"`
+}
+
+type Response {
+	Message string `json:"message"`
+}
+
+service src-api {
+	@doc (
+		summary: "Phan Chinh Quan"
+	)
+	@handler SrcHandler
+	get /from/:name (Request) returns (Response)
+}
+
