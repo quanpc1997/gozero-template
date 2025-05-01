@@ -8,6 +8,7 @@ import (
 
 	"template/gozero/src/internal/svc"
 
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/zeromicro/go-zero/rest"
 )
 
@@ -15,9 +16,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
+				// Phan Chinh Quan
 				Method:  http.MethodGet,
-				Path:    "/from/:name",
-				Handler: SrcHandler(serverCtx),
+				Path:    "/health",
+				Handler: HealthHandler(serverCtx),
+			},
+			{
+				// Phan Chinh Quan
+				Method:  http.MethodGet,
+				Path:    "/metrics",
+				Handler: promhttp.Handler().ServeHTTP,
 			},
 		},
 	)
