@@ -1,3 +1,10 @@
 Name: src-api
 Host: 0.0.0.0
 Port: 8888
+
+postgres:
+  driver: postgres
+  datasource: "host=localhost user=admin password=12345678 dbname=gozero_template sslmode=disable"
+  maxIdleConns: 10
+  maxOpenConns: 100
+  connMaxLifetime: 600

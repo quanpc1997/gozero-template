@@ -3,6 +3,32 @@
 
 package types
 
+type CommonResponse struct {
+	Success bool         `json:"success"`
+	Data    interface{}  `json:"data,omitempty"` // <- Đây là "any"
+	Meta    MetaInfo     `json:"meta"`
+	Error   *ErrorDetail `json:"error,omitempty"`
+}
+
+type ErrorDetail struct {
+	Code    string      `json:"code"`
+	Message string      `json:"message"`
+	Details interface{} `json:"details,omitempty"`
+}
+
+type MetaInfo struct {
+	RequestID string `json:"request_id"`
+	Timestamp string `json:"timestamp"`
+}
+
+type RegisterRequest struct {
+	Email       string `json:"email"`
+	Password    string `json:"password"`
+	Firstname   string `json:"firstname"`
+	Lastname    string `json:"lastname"`
+	DateOfBirth string `json:"dob"`
+}
+
 type Response struct {
 	Message string `json:"message"`
 }
